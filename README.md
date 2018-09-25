@@ -1,9 +1,9 @@
 # BKTrees.jl
 
-Julia implementation of [BKTrees](https://en.wikipedia.org/wiki/BK-tree) based on the Python implementation found [here](https://github.com/Jetsetter/pybktree)
+Julia implementation of [BKTrees](https://en.wikipedia.org/wiki/BK-tree) based on the Python implementation found [here](https://github.com/Jetsetter/pybktree).
 
 [![License](http://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat)](LICENSE.md)
-[![Build Status](https://travis-ci.org/zgornel/BKTrees.jl.svg?branch=master)](https://travis-ci.org/zgornel/BKTree.jl)
+[![Build Status](https://travis-ci.org/zgornel/BKTrees.jl.svg?branch=master)](https://travis-ci.org/zgornel/BKTrees.jl)
 [![Coverage Status](https://coveralls.io/repos/github/zgornel/BKTrees.jl/badge.svg?branch=master)](https://coveralls.io/github/zgornel/BKTrees.jl?branch=master)
 
 
@@ -14,13 +14,15 @@ For more information on BK-trees check out https://en.wikipedia.org/wiki/BK-tree
 
 ## Documentation
 
+ This short example illustrates the usage of the B-K trees for approximate string matching:
 ```julia
-julia> using Pkg; Pkg.activate(".")
+julia> using Pkg
+       Pkg.activate(".")
        using BKTrees
        using Random
        using StringDistances
        
-       lev(x,y) = evaluate(Levenshtein(), x, y)  # needs to return floats 
+       lev(x,y) = evaluate(Levenshtein(), x, y)
        dictionary = [randstring(10) for _ in 1:100_000]  # random dictionary
        bkt = BKTree(lev, dictionary)  # build tree
        

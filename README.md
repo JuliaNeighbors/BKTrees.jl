@@ -29,7 +29,7 @@ julia> using Pkg
        target = randstring(10)  # target string
        
        # search for best 3 matches with distance < 10
-       found=find(bkt, target, 10, k=3) 
+       found = find(bkt, "bbb", 10, k=3)
        @show target, found
 
 #(target, found) = ("3dCngHYaXy", Tuple{Float64,String}[(7.0, "9bbbmnUDOZ"), (7.0, "hbYZP7bmb5"), (7.0, "jDbjzOTbbR")])

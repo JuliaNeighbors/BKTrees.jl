@@ -3,9 +3,9 @@ using BKTrees
 using Random
 using StringDistances
 
-lev(x,y) = float(evaluate(Levenshtein(), x, y))::Float64
-dictionary = [randstring(10) for _ in 1:100_000]
-bkt = BKTree(lev, dictionary)
+lev(x::S,y::S) where S<:AbstractString = evaluate(Levenshtein(), x, y)
+dictionary = [randstring(10) for _ in 1:500_000]
+bkt = BKTree(lev, sort(dictionary))
 
 target = randstring(10)
 

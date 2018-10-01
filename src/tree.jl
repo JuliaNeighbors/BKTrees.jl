@@ -28,15 +28,17 @@ mutable struct BKTree{T}
     root::Node{T}    # node
 end
 
-# Parametric constructors (impossible to determine type from arguments alone)
+# Constructors
+# Remarks:
+#   If no function `f` is provided, the `hamming_distance` will
+#   be used however, the hamming distance works only for ::Integer data
 BKTree{T}(f::Function) where {T} = BKTree(f, Node{T}())
 
-BKTree{T}() where T = BKTree(Node{T}())
-
-# Normal constructors
 BKTree(root::Node{T}) where {T} = BKTree(hamming_distance, root) 
 
 BKTree(item::T) where {T} = BKTree(hamming_distance, Node(item))
+
+BKTree{T}() where T = BKTree(Node{T}())
 
 BKTree(f::Function, items::Vector{T}) where {T} = begin
     bkt = BKTree{T}(f) 
@@ -57,7 +59,7 @@ end
 
 
 # Show methods
-show(io::IO, bkt::BKTree{T}) where T = 
+show(io::IO, bkt::BKTree{T}) where {T} =
     print(io, "B-K Tree{$T}, function=$(bkt.f), ",
           "$(length(bkt.root.children)) branches")
 
